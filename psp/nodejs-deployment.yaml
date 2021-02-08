@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+spec:
+  selector:
+    matchLabels:
+      app: nodejs
+  replicas: 3 
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+     # securityContext:
+     #   runAsUser: 1000
+      containers:
+      - name: nodejs
+        image: heroku/nodejs-hello-world 
+        ports:
+        - containerPort: 80
+          name: nodejs

@@ -1,0 +1,40 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: namespace-a
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: namespace-b
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netuitls-ns-a
+  namespace: namespace-a
+spec:
+  containers:
+    - name: netutils
+      image: amouat/network-utils
+      command:
+      - /bin/sh
+      - -c
+      - |
+        tail -f /dev/null
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netuitls-ns-b
+  namespace: namespace-b
+spec:
+  containers:
+    - name: netutils
+      image: amouat/network-utils
+      command:
+      - /bin/sh
+      - -c
+      - |
+        tail -f /dev/null
+
